@@ -48,8 +48,8 @@ function parallax() {
       lookerT.innerHTML = `<p>${lookY}</p>`;
 
 
-     let offsetXX = `${(e.clientX / 30) + 150}vh`;
-     let offsetYY = `${(e.clientY / 100) + 20}vh`;
+     let offsetXX = `${(e.clientX / 50) + 150}vh`;
+     let offsetYY = `${(e.clientY / 50) + 20}vh`;
      let offLookOne = document.querySelector(".offsetX");
      let offLookTwo = document.querySelector(".offsetY");
      offLookOne.innerHTML = `<p>${offsetXX}</p>`;
@@ -65,8 +65,8 @@ function parallax2() {
   let elem = document.querySelector('.num2');
   document.addEventListener("mousemove", function (e) {move(e); });
   function move(e) {
-    let offsetXX = `${(e.clientX / 90) + 120}vh`;
-    let offsetYY = `${(e.clientY / 120) + 20}vh`;
+    let offsetXX = `${(e.clientX / 50) + 120}vh`;
+    let offsetYY = `${(e.clientY / 50) + 20}vh`;
 
     elem.style.left = offsetXX;
     elem.style.top = offsetYY;
@@ -78,8 +78,8 @@ function parallax3() {
   let elem = document.querySelector('.num3');
   document.addEventListener("mousemove", function (e) {move(e); });
   function move(e) {
-    let offsetXX = `${(e.clientX / 150) + 150}vh`;
-    let offsetYY = `${(e.clientY / 70) + 50}vh`;
+    let offsetXX = `${(e.clientX / 80) + 150}vh`;
+    let offsetYY = `${(e.clientY / 80) + 50}vh`;
 
     elem.style.left = offsetXX;
     elem.style.top = offsetYY;
@@ -91,21 +91,35 @@ function parallax4() {
   let elem = document.querySelector('.num4');
   document.addEventListener("mousemove", function (e) {move(e); });
   function move(e) {
-    let offsetXX = `${(e.clientX / 100) + 120}vh`;
-    let offsetYY = `${(e.clientY / 150) + 50}vh`;
+    let offsetXX = `${(e.clientX / 80) + 120}vh`;
+    let offsetYY = `${(e.clientY / 80) + 50}vh`;
 
     elem.style.left = offsetXX;
     elem.style.top = offsetYY;
   }
 }
 
-
-
 parallax();
 parallax2();
 parallax3();
 parallax4();
 
+
+function windowParallax(){
+  let doc = document.querySelector('.position');
+  window.addEventListener('scroll', function (e) { scroller(e); });
+  function scroller(e) {
+    let footer = document.querySelector('.footer');
+    doc.innerHTML = `<p>${pageYOffset}</p>`;
+    offsetScroll = `${(555 - pageYOffset)*2}px`;
+    footer.style.top = offsetScroll;
+    footer.style.left = offsetScroll;
+
+  }
+}
+
+
+windowParallax();
 
 
 
