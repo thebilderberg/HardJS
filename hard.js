@@ -1,17 +1,20 @@
 
 let id = Symbol('id'); // символы всегда уникальны, даже если их имена совпадают.
 let user = {
-    tshort: 'black',
-    snikers: 'nike',
-    name: 'keker',
+    tshort: `tshirt.png`,
+    snikers: `nikes.jpg`,
+    name: 'Bilderberg',
     number: 9007199254740991,
     alco(){
-        console.log('obj_user_function');
+        console.log(user[id]);
+        console.log(user.id);
+        console.log(user.name);
+        console.log(id);
     },
-    [id]: 'ss345klkLL55lyy12',
+    [id]: 'ss345klkLL55lyy12', // разобрать
 }
 
-// user.alco();
+user.alco();
 
 const bigInt = 1234567890123456789012345678901234567890n;
 
@@ -25,8 +28,8 @@ function getUser(obj){
 
 
         name.innerHTML = `<p>${obj.name}</p>`;
-        tshort.innerHTML = `<p>${obj.tshort}</p>`;
-        snikers.innerHTML = `<p>${obj.snikers}</p>`;
+        tshort.innerHTML = `<img class=\"userImg\" src=\"${obj.tshort}\" alt=\"\">`;
+        snikers.innerHTML = `<img class=\"userImg\" src=\"${obj.snikers}\" alt=\"\">`;
     }
 }
 
@@ -47,7 +50,14 @@ function parallax() {
       looker.innerHTML = `<p>${lookX}</p>`;
       lookerT.innerHTML = `<p>${lookY}</p>`;
 
-
+      if(lookX>e.clientX){
+        container.style.left = `${(e.clientX / 50)}vw`;
+        container.style.top = `${(e.clientY / 50) + 20}vh`;
+      }else{
+        container.style.left = `${((e.clientX / 100) * -1) + 90 }vw`;
+        container.style.top = `${((e.clientY / 50) * -1)+ 20}vh`;
+      }
+/*
      let offsetXX = `${(e.clientX / 50) + 150}vh`;
      let offsetYY = `${(e.clientY / 50) + 20}vh`;
      let offLookOne = document.querySelector(".offsetX");
@@ -58,6 +68,7 @@ function parallax() {
 
      container.style.left = offsetXX;
      container.style.top = offsetYY;
+     */
   }
 }
 
@@ -65,14 +76,24 @@ function parallax2() {
   let elem = document.querySelector('.num2');
   document.addEventListener("mousemove", function (e) {move(e); });
   function move(e) {
-    let offsetXX = `${(e.clientX / 50) + 120}vh`;
-    let offsetYY = `${(e.clientY / 50) + 20}vh`;
+
+
+    let offsetXX = `${((e.clientX / 80) * -1) + 75}vw`;
+    let offsetYY = `${((e.clientY / 50) * -1) + 20}vh`;
+
+    let offsetXXq = `${((e.clientX / 50) * -1) + 70}vw`;
+    let offsetYYq = `${((e.clientY / 50) * -1) + 20}vh`;
+    let offLookOne = document.querySelector(".offsetX");
+    let offLookTwo = document.querySelector(".offsetY");
+    offLookOne.innerHTML = `<p>${offsetXXq}</p>`;
+    offLookTwo.innerHTML = `<p>${offsetYYq}</p>`;
 
     elem.style.left = offsetXX;
     elem.style.top = offsetYY;
   }
 }
 
+// ( * -1)
 
 function parallax3() {
   let elem = document.querySelector('.num3');
@@ -111,10 +132,11 @@ function windowParallax(){
   function scroller(e) {
     let footer = document.querySelector('.footer');
     doc.innerHTML = `<p>${pageYOffset}</p>`;
-    offsetScroll = `${(555 - pageYOffset)*2}px`;
+    offsetScroll = `${(555 - pageYOffset) * 2}px`;
     footer.style.top = offsetScroll;
-    footer.style.left = offsetScroll;
-
+    if (pageYOffset > 400) {
+      footer.style.left = offsetScroll;
+    }
   }
 }
 
@@ -126,7 +148,32 @@ windowParallax();
 
 
 
-
+// function parallax4() {
+//   let elem = document.querySelector('.num4');
+//   document.addEventListener("mousemove", function (e) {move(e); });
+//   let prevOffsetOfX = -1;
+//   let prevOffsetOfY = -1;
+//   function move(e) {
+//     if (prevOffsetOfX === -1 && prevOffsetOfY === -1){
+//       prevOffsetOfX = e.clientX;
+//       prevOffsetOfY = e.clientY;
+//     }
+//     let divX = e.clientX - prevOffsetOfX;
+//     let divY = e.clientY - prevOffsetOfY;
+//
+//     console.log(divX, divY);
+//
+//
+//     let offsetXX = `${prevOffsetOfX - divX}px`;
+//     let offsetYY = `${prevOffsetOfY - divY}px`;
+//
+//     elem.style.left = offsetXX;
+//     elem.style.top = offsetYY;
+//
+//     prevOffsetOfX = e.clientX;
+//     prevOffsetOfY = e.clientY;
+//   }
+// }
 
 
 
@@ -205,6 +252,9 @@ function kalkulator(obj){
         obj.two = y;
         obj.qq();
         obj.qqw();
+    }
+    else {
+      console.log('error');
     }
 }
 
